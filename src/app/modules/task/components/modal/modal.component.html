@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Crear Tarea</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="taskForm">
+        <div class="flex flex-col">
+            <mat-form-field>
+                <mat-label>Tarea</mat-label>
+                <input matInput [formControlName]="'task'" placeholder="Ej. Buscar al perror" value="" maxlength="30">
+                <mat-error *ngIf="taskForm.get('task')?.hasError('required')">
+                    El valor es requerido.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Estado</mat-label>
+                <mat-select [formControlName]="'status'">
+                    <mat-option *ngFor="let statu of status" [value]="statu.value">
+                        {{statu.viewValue}}
+                    </mat-option>
+                 </mat-select>
+                 <mat-error *ngIf="taskForm.get('status')?.hasError('required')">
+                    El valor es requerido.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Fecha de Vencimiento:</mat-label>
+                <input matInput [formControlName]="'defeated'" [matDatepicker]="picker" readonly="true">
+                <mat-hint>DD-MM-YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="taskForm.get('defeated')?.hasError('required')">
+                    El valor es requerido.
+                </mat-error>
+            </mat-form-field>
+            <div class="mt-2 text-red-600" *ngIf="messageError">
+                No fue posible crear la tarea.
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button [disabled]="disabledButton" (click)="create()">Guardar</button>
+</mat-dialog-actions>
