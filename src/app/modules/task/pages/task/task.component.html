@@ -3,14 +3,14 @@
         <div class="text-2xl">Cosas Por Hacer</div>
         <div class="text-base">Hoy: {{today | date: 'dd/MM/y'}}</div>
     </div>
-    
+
     <div class="flex flex-col md:w-2/3 w-full space-y-2">
         <ng-container *ngIf="tasks$ | async as tasks">
-            <task-card (click)="findOne(task.id)" class="cursor-pointer" *ngFor="let task of tasks" [task]="task.task" [id]="task.id" [status]="task.status" [defeated]="task.defeated"></task-card>
+            <task-card (click)="openDialog(task.id)" class="cursor-pointer" *ngFor="let task of tasks"
+                [task]="task.task" [id]="task.id" [status]="task.status" [defeated]="task.defeated"></task-card>
         </ng-container>
-        <button class="h-16" (click)="openDialog()" mat-raised-button color="primary">
+        <button class="h-16" (click)="openDialog(null)" mat-raised-button color="primary">
             <mat-icon class="customIconSize">control_point</mat-icon>
         </button>
     </div>
 </div>
-
