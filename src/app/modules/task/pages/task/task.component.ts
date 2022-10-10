@@ -31,6 +31,16 @@ export class TaskComponent implements OnInit , OnDestroy{
   findAll(): void{
     this._taskService.findAll().subscribe();
   }
+  findOne(id:string):void{
+    this._taskService.findOne(id).subscribe({
+      next:(resp)=>{
+        this.openDialog()
+      },
+      error:(error)=>{
+        console.log(error)
+      }
+    })
+  }
   ngOnDestroy(): void {
     this.obs_tasks?.unsubscribe();
   }

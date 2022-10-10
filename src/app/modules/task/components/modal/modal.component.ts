@@ -26,15 +26,16 @@ export class ModalComponent implements OnInit {
     {value: Status.Expired, viewValue: 'Expirado'}
   ]
   taskForm:FormGroup=this._formBuilder.group({
-    task:['', [Validators.required, Validators.maxLength(30)]],
-    status:['', Validators.required],
-    defeated:['', Validators.required]
+    task:[this._taskService.task.task, [Validators.required, Validators.maxLength(30)]],
+    status:[this._taskService.task.status, Validators.required],
+    defeated:[this._taskService.task.defeated, Validators.required]
   });
   constructor(private _formBuilder: FormBuilder,private _taskService: TaskService,
     private _dialogRef: MatDialogRef<ModalComponent>,private _toastr: ToastrService
     ) {}
 
   ngOnInit(): void {
+    console.log(this._taskService.task);
   }
 
   create(): void{
