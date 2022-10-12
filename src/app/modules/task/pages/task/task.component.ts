@@ -24,7 +24,7 @@ export class TaskComponent implements OnInit {
     this.findAll();
   }
 
-  openDialog(id: string | null) {
+  openDialog(id: string) {
     this._dialog.open(ModalComponent, {
       data: {
         id

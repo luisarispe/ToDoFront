@@ -12,8 +12,7 @@ const base_url = environment.base_url;
 })
 export class TaskService {
   private _tasks: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>([]);
-  private _task: BehaviorSubject<Task | null> = new BehaviorSubject<Task | null>(null);
-
+  
   constructor(private http: HttpClient) {
   }
 
@@ -22,14 +21,12 @@ export class TaskService {
     return this._tasks.asObservable();
   }
 
-  get task$(): Observable<Task | null> {
-    return this._task.asObservable();
+  create(data: CreateTaskForm) {
+    return this.http.post(`${base_url}task`, data);
   }
 
-  create(data: CreateTaskForm) {
-    return this.http.post(`${base_url}task`, data).pipe(
-      delay(2000)
-    );
+  update(data: CreateTaskForm, id:string) {
+    return this.http.patch(`${base_url}task/${id}`, data);
   }
 
   findAll(): Observable<Task[]> {
@@ -41,12 +38,7 @@ export class TaskService {
   }
 
   findOne(id: string): Observable<Task> {
-    return this.http.get<Task>(`${base_url}task/${id}`).pipe(
-      delay(1000),
-      tap((task) => {
-        this._task.next(task)
-      })
-    );
+    return this.http.get<Task>(`${base_url}task/${id}`);
   }
 
 }

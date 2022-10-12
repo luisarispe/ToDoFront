@@ -39,7 +39,7 @@
     </mat-dialog-content>
     <mat-dialog-actions align="end">
         <button mat-button mat-dialog-close>Cancelar</button>
-        <button mat-button [disabled]="!disabledButton" (click)="create()">
+        <button mat-button [disabled]="!disabledButton" (click)="idTask==='0'?  create(): update()">
             <div class="flex flex-row items-center space-x-1">
                 <ng-container *ngIf="!disabledButton">
                     <mat-spinner [diameter]="20"></mat-spinner>
