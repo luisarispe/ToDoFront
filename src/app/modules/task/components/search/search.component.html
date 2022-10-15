@@ -1,0 +1,5 @@
+<div class="flex flex-row bg-white p-3 rounded-lg space-x-1 items-center">
+  <mat-icon class="text-gray-400" matSuffix>search</mat-icon>
+  <input type="text" matInput placeholder="Buscar" class="w-full p-1 pl-4 outline-gray-400"
+    (input)="searchTask(search.value)" #search>
+</div>

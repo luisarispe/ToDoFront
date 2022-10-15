@@ -5,6 +5,7 @@
     </div>
 
     <div class="flex flex-col md:w-2/3 w-full space-y-2">
+        <task-search></task-search>
         <ng-container *ngIf="tasks$ | async as tasks">
             <task-card (click)="openDialog(task.id)" class="cursor-pointer" *ngFor="let task of tasks"
                 [task]="task.task" [id]="task.id" [status]="task.status" [defeated]="task.defeated"></task-card>

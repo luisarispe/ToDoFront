@@ -12,7 +12,7 @@ const base_url = environment.base_url;
 })
 export class TaskService {
   private _tasks: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>([]);
-  
+  private _searchTask: BehaviorSubject<string> = new BehaviorSubject<string>('');
   constructor(private http: HttpClient) {
   }
 
@@ -20,12 +20,20 @@ export class TaskService {
   get tasks$(): Observable<Task[]> {
     return this._tasks.asObservable();
   }
+  set searchTask(search: string) {
+    this._searchTask.next(search);
+  }
+  get searchTask$(): Observable<string> {
+    return this._searchTask.asObservable();
+  }
+
+
 
   create(data: CreateTaskForm) {
     return this.http.post(`${base_url}task`, data);
   }
 
-  update(data: CreateTaskForm, id:string) {
+  update(data: CreateTaskForm, id: string) {
     return this.http.patch(`${base_url}task/${id}`, data);
   }
 

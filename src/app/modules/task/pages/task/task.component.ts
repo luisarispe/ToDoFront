@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable, Subscription } from 'rxjs';
+import { combineLatest, Observable, Subscription, map, distinctUntilChanged } from 'rxjs';
 import { ModalComponent } from '../../components/modal/modal.component';
 
 import { Task } from "../../models/task.model";
@@ -13,15 +13,28 @@ import { TaskService } from '../../task.service';
 })
 export class TaskComponent implements OnInit {
 
-  tasks$!: Observable<Task[]>;
+  tasks$: Observable<Task[]> = new Observable();
+  searchTask$: Observable<string> = new Observable();
   today: Date = new Date();
 
   constructor(private _dialog: MatDialog, private _taskService: TaskService) { }
 
   ngOnInit(): void {
-    this.tasks$ = this._taskService.tasks$;
-    this._taskService.tasks$.subscribe();
     this.findAll();
+    this.searchTask$ = this._taskService.searchTask$;
+
+    this.tasks$ = combineLatest([this._taskService.tasks$, this.searchTask$]).pipe(
+      map(([tasks, searchTask]) => {
+
+        let filterTasks = tasks;
+        if (searchTask.length > 0) {
+
+          searchTask = searchTask.trim().toLowerCase()
+          filterTasks = tasks.filter(task => task.task.toLowerCase().includes(searchTask) || task.defeated.toString().includes(searchTask))
+        }
+        return filterTasks
+      })
+    );
   }
 
   openDialog(id: string) {
