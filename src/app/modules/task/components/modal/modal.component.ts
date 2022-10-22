@@ -44,19 +44,22 @@ export class ModalComponent implements OnInit {
   }
 
   create(): void {
-    if (this.taskForm.invalid) return;
+    if (this.taskForm.invalid){
+      this.taskForm.markAllAsTouched();
+      return
+    }
 
     this.disabledButton = false;
     this._taskService.create(this.taskForm.value).subscribe({
-      error: (error) => {
-        this.messageError = true;
-        this.disabledButton = true;
-      },
       complete: () => {
         this.disabledButton = true;
         this._dialogRef.close();
         this._taskService.findAll().subscribe()
         this._toastr.success('La tarea fue creada!', '');
+      },
+      error: (error) => {
+        this.messageError = true;
+        this.disabledButton = true;
       }
     });
   }
@@ -65,15 +68,15 @@ export class ModalComponent implements OnInit {
 
     this.disabledButton = false;
     this._taskService.update(this.taskForm.value, this.idTask).subscribe({
-      error: (error) => {
-        this.messageError = true;
-        this.disabledButton = true;
-      },
       complete: () => {
         this.disabledButton = true;
         this._dialogRef.close();
         this._taskService.findAll().subscribe()
         this._toastr.success('La tarea fue actualizada!', '');
+      },
+      error: (error) => {
+        this.messageError = true;
+        this.disabledButton = true;
       }
     });
   }

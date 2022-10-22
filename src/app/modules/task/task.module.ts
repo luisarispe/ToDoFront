@@ -11,12 +11,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatMenuModule} from '@angular/material/menu';
+
 
 import { taskRoutes } from './task-routing.module';
 import { CardComponent } from './components/card/card.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { TaskComponent } from './pages/task/task.component';
 import { SearchComponent } from './components/search/search.component';
+import { GroupByComponent } from './components/group-by/group-by.component';
 
 
 
@@ -26,7 +29,8 @@ import { SearchComponent } from './components/search/search.component';
     TaskComponent,
     CardComponent,
     ModalComponent,
-    SearchComponent
+    SearchComponent,
+    GroupByComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +44,8 @@ import { SearchComponent } from './components/search/search.component';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatMenuModule
   ]
 })
 export class TaskModule { }

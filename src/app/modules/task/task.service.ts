@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, debounceTime, delay, map, Observable, tap } from 'rxjs';
 import { CreateTaskForm } from './interfaces/create-form-interface';
 import { environment } from '../../../environments/environment';
-import { Task } from './models/task.model';
+import { OrderBy, Task } from './models/task.model';
 
 const base_url = environment.base_url;
 
@@ -13,6 +13,9 @@ const base_url = environment.base_url;
 export class TaskService {
   private _tasks: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>([]);
   private _searchTask: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private _orderBy: BehaviorSubject<OrderBy> = new BehaviorSubject<OrderBy>(OrderBy.DATE_DESC);
+
+
   constructor(private http: HttpClient) {
   }
 
@@ -20,12 +23,21 @@ export class TaskService {
   get tasks$(): Observable<Task[]> {
     return this._tasks.asObservable();
   }
+  
   set searchTask(search: string) {
     this._searchTask.next(search);
   }
   get searchTask$(): Observable<string> {
     return this._searchTask.asObservable();
   }
+
+  set orderBy(order: OrderBy){
+    this._orderBy.next(order);
+  }
+  get orderBy$(): Observable<OrderBy>{
+    return this._orderBy.asObservable();
+  }
+  
 
 
 

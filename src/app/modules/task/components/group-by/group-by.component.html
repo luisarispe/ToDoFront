@@ -1,0 +1,21 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>swap_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="orderBy(orderByEnum.DATE_ASC)">
+      <mat-icon>keyboard_arrow_up</mat-icon>
+      <span>Fecha ASC</span>
+    </button>
+    <button mat-menu-item (click)="orderBy(orderByEnum.DATE_DESC)">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+      <span>Fecha DESC</span>
+    </button>
+    <button mat-menu-item (click)="orderBy(orderByEnum.TASK_ASC)">
+      <mat-icon>keyboard_arrow_up</mat-icon>
+      <span>Tarea ASC</span>
+    </button>
+    <button mat-menu-item (click)="orderBy(orderByEnum.TASK_DESC)">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+        <span>Tarea DESC</span>
+      </button>
+  </mat-menu>
