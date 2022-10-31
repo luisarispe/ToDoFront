@@ -1,1 +1,16 @@
+<div class="bg-white flex flex-wrap justify-between items-center text-2xl font-mono px-5 py-3 mb-3">
+    <div class="flex flex-wrap justify-between w-full md:w-auto">
+        <div class="ml-4">Task</div>
+        <div class="md:hidden cursor-pointer" (click)="openMenu()">
+            <mat-icon class="customIconSize">menu</mat-icon>
+        </div>
+    </div>
+    <div [ngClass]="open==true? 'flex': 'hidden'"
+        class="md:flex flex-grow justify-center md:justify-end md:mr-5 transition delay-150 duration-300 ease-in-out">
+        <ul class=" flex flex-col md:flex-row space-x-10 text-gray-400 font-medium">
+            <li class="hover:text-black cursor-pointer">Dashboard</li>
+            <li class="hover:text-black cursor-pointer">Task</li>
+        </ul>
+    </div>
+</div>
 <router-outlet></router-outlet>

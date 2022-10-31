@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
-
+  open: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  openMenu() {
+    this.open = this.open ? false : true;
+    console.log(this.open);
+  }
 }

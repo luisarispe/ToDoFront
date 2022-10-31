@@ -1,4 +1,4 @@
-<div class="bg-slate-300 h-full flex flex-col items-center px-2">
+<div class="flex flex-col items-center px-2">
     <div class="flex md:flex-row flex-col justify-center md:items-center pt-6 space-x-8 pb-5">
         <div class="text-2xl">Cosas Por Hacer</div>
         <div class="text-base">Hoy: {{today | date: 'dd/MM/y'}}</div>
@@ -9,7 +9,7 @@
             <task-search class="grow"></task-search>
             <task-group-by class="bg-white rounded-lg"></task-group-by>
         </div>
-        
+
         <ng-container *ngIf="tasks$ | async as tasks">
             <task-card (click)="openDialog(task.id)" class="cursor-pointer" *ngFor="let task of tasks"
                 [task]="task.task" [id]="task.id" [status]="task.status" [defeated]="task.defeated"></task-card>
