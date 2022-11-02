@@ -11,8 +11,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 import { taskRoutes } from './task-routing.module';
 import { CardComponent } from './components/card/card.component';
@@ -20,6 +21,10 @@ import { ModalComponent } from './components/modal/modal.component';
 import { TaskComponent } from './pages/task/task.component';
 import { SearchComponent } from './components/search/search.component';
 import { GroupByComponent } from './components/group-by/group-by.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+
+
+
 
 
 
@@ -27,6 +32,7 @@ import { GroupByComponent } from './components/group-by/group-by.component';
 @NgModule({
   declarations: [
     TaskComponent,
+    DashboardComponent,
     CardComponent,
     ModalComponent,
     SearchComponent,
@@ -45,7 +51,8 @@ import { GroupByComponent } from './components/group-by/group-by.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressSpinnerModule,
-    MatMenuModule
+    MatMenuModule,
+    NgApexchartsModule
   ]
 })
 export class TaskModule { }

@@ -1,0 +1,26 @@
+<div class="container mx-auto pt-10 flex flex-col space-y-10">
+  <div class="grid md:grid-cols-3 gap-4 md:m-0 m-4">
+    <div class="bg-white text-center p-20 rounded-lg shadow-lg flex flex-col space-y-3">
+      <div class="text-7xl text-orange-600 font-bold">{{countTodo}}</div>
+      <div class="text-xl">Que Hacer</div>
+    </div>
+    <div class="bg-white text-center p-20 rounded-lg shadow-lg flex flex-col space-y-3">
+      <div class="text-7xl text-blue-900 font-bold">{{countDone}}</div>
+      <div class="text-xl">Hecho</div>
+    </div>
+    <div class="bg-white text-center p-20 rounded-lg shadow-lg flex flex-col space-y-3">
+      <div class="text-7xl text-red-800 font-bold">{{countExpired}}</div>
+      <div class="text-xl">Expirado</div>
+    </div>
+  </div>
+  <!---END GRID--->
+  <div id="chart" class="bg-white md:m-0 m-4 rounde-lg shadow-lg">
+    <div class="p-3 text-xl font-medium">
+      Tareas del Año
+    </div>
+    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
+      [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis" [fill]="chartOptions.fill"
+      [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip" [xaxis]="chartOptions.xaxis"></apx-chart>
+  </div>
+</div>
+<!---END CONTAINER--->

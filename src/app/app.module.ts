@@ -1,4 +1,4 @@
-import { LOCALE_ID,NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
@@ -26,7 +26,7 @@ const routerConfig: ExtraOptions = {
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes,routerConfig),
+    RouterModule.forRoot(appRoutes, routerConfig),
     ToastrModule.forRoot(),
     HttpClientModule,
     LayoutModule,
