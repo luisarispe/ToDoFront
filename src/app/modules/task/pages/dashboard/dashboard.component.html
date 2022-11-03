@@ -14,13 +14,6 @@
     </div>
   </div>
   <!---END GRID--->
-  <div id="chart" class="bg-white md:m-0 m-4 rounde-lg shadow-lg">
-    <div class="p-3 text-xl font-medium">
-      Tareas del Año
-    </div>
-    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
-      [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis" [fill]="chartOptions.fill"
-      [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip" [xaxis]="chartOptions.xaxis"></apx-chart>
-  </div>
+  <task-chart-column></task-chart-column>
 </div>
 <!---END CONTAINER--->

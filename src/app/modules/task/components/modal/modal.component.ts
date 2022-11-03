@@ -1,10 +1,10 @@
-import { Component, Inject, OnInit} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { ToastrService } from 'ngx-toastr';
 
-import { Status} from '../../models/task.model';
+import { Status } from '../../models/task.model';
 import { TaskService } from '../../task.service';
 
 
@@ -19,7 +19,7 @@ export class ModalComponent implements OnInit {
   disabledButton: boolean = true;
   disabledForm: boolean = true;
   messageError: boolean = false;
-  idTask:string;
+  idTask: string;
 
   status: { value: Status, viewValue: string }[] = [
     { value: Status.ToDo, viewValue: 'Que Hacer' },
@@ -34,17 +34,17 @@ export class ModalComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder, private _taskService: TaskService,
     private _dialogRef: MatDialogRef<ModalComponent>, private _toastr: ToastrService,
-    @Inject(MAT_DIALOG_DATA) private _data: { id: string}
+    @Inject(MAT_DIALOG_DATA) private _data: { id: string }
   ) {
-    this.idTask=_data.id;
-   }
+    this.idTask = _data.id;
+  }
 
   ngOnInit(): void {
     this.findOne();
   }
 
   create(): void {
-    if (this.taskForm.invalid){
+    if (this.taskForm.invalid) {
       this.taskForm.markAllAsTouched();
       return
     }
@@ -54,7 +54,7 @@ export class ModalComponent implements OnInit {
       complete: () => {
         this.disabledButton = true;
         this._dialogRef.close();
-        this._taskService.findAll().subscribe()
+        this._taskService.findAll().subscribe();
         this._toastr.success('La tarea fue creada!', '');
       },
       error: (error) => {
@@ -63,7 +63,7 @@ export class ModalComponent implements OnInit {
       }
     });
   }
-  update(): void{
+  update(): void {
     if (this.taskForm.invalid) return;
 
     this.disabledButton = false;
@@ -71,7 +71,7 @@ export class ModalComponent implements OnInit {
       complete: () => {
         this.disabledButton = true;
         this._dialogRef.close();
-        this._taskService.findAll().subscribe()
+        this._taskService.findAll().subscribe();
         this._toastr.success('La tarea fue actualizada!', '');
       },
       error: (error) => {
@@ -80,9 +80,9 @@ export class ModalComponent implements OnInit {
       }
     });
   }
-  findOne():void{
+  findOne(): void {
 
-    if (this.idTask!=='0') {
+    if (this.idTask !== '0') {
       this._taskService.findOne(this._data.id).subscribe({
         next: (resp) => {
           this.disabledForm = false;
@@ -92,11 +92,11 @@ export class ModalComponent implements OnInit {
             defeated: resp?.defeated
           })
         },
-        error:(error)=>{
+        error: (error) => {
           this._dialogRef.close();
         }
       });
-    }else{
+    } else {
       this.disabledForm = false
     }
   }

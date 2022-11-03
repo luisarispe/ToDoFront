@@ -13,6 +13,5 @@ export class LayoutComponent implements OnInit {
   }
   openMenu() {
     this.open = this.open ? false : true;
-    console.log(this.open);
   }
 }

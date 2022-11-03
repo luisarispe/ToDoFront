@@ -23,7 +23,7 @@ export class TaskService {
   get tasks$(): Observable<Task[]> {
     return this._tasks.asObservable();
   }
-  
+
   set searchTask(search: string) {
     this._searchTask.next(search);
   }
@@ -31,15 +31,12 @@ export class TaskService {
     return this._searchTask.asObservable();
   }
 
-  set orderBy(order: OrderBy){
+  set orderBy(order: OrderBy) {
     this._orderBy.next(order);
   }
-  get orderBy$(): Observable<OrderBy>{
+  get orderBy$(): Observable<OrderBy> {
     return this._orderBy.asObservable();
   }
-  
-
-
 
   create(data: CreateTaskForm) {
     return this.http.post(`${base_url}task`, data);

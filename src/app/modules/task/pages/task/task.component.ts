@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { combineLatest, Observable, Subscription, map, distinctUntilChanged } from 'rxjs';
+import { combineLatest, Observable, map } from 'rxjs';
 import { ModalComponent } from '../../components/modal/modal.component';
 
 import { OrderBy, Task } from '../../models/task.model';
@@ -15,21 +15,20 @@ export class TaskComponent implements OnInit {
 
   tasks$: Observable<Task[]> = new Observable();
   searchTask$: Observable<string> = new Observable();
-  orderBy$:Observable<OrderBy>=new Observable();
+  orderBy$: Observable<OrderBy> = new Observable();
 
   today: Date = new Date();
 
   constructor(private _dialog: MatDialog, private _taskService: TaskService) { }
 
   ngOnInit(): void {
-    this.findAll();
     this.searchTask$ = this._taskService.searchTask$;
-    this.orderBy$=this._taskService.orderBy$;
+    this.orderBy$ = this._taskService.orderBy$;
 
     this.tasks$ = combineLatest([this._taskService.tasks$, this.searchTask$, this.orderBy$]).pipe(
       map(([tasks, searchTask, orderBy]) => {
 
-        let filterTasks = tasks;
+        let filterTasks: Task[] = tasks;
         if (searchTask.length > 0) {
 
           searchTask = searchTask.trim().toLowerCase();
@@ -37,13 +36,13 @@ export class TaskComponent implements OnInit {
           filterTasks = tasks.filter(task => task.task.toLowerCase().includes(searchTask) || task.defeated.toString().includes(searchTask))
         }
         /*ORDENAR*/
-        filterTasks =this.orderBy(filterTasks, orderBy);
-      
+        filterTasks = this.orderBy(filterTasks, orderBy);
+
         return filterTasks
       })
     );
   }
-  orderBy(tasks:Task[], order:OrderBy):Task[]{
+  orderBy(tasks: Task[], order: OrderBy): Task[] {
 
     switch (order) {
       case OrderBy.DATE_ASC:
@@ -74,10 +73,6 @@ export class TaskComponent implements OnInit {
         id
       }
     });
-  }
-
-  findAll(): void {
-    this._taskService.findAll().subscribe();
   }
 }
 

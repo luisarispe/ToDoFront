@@ -22,6 +22,7 @@ import { TaskComponent } from './pages/task/task.component';
 import { SearchComponent } from './components/search/search.component';
 import { GroupByComponent } from './components/group-by/group-by.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ChartColumnComponent } from './components/chart-column/chart-column.component';
 
 
 
@@ -36,7 +37,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     CardComponent,
     ModalComponent,
     SearchComponent,
-    GroupByComponent
+    GroupByComponent,
+    ChartColumnComponent
   ],
   imports: [
     CommonModule,
